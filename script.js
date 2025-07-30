@@ -21,13 +21,44 @@ navLinks.forEach(link => {
   });
 });
 
+// Scroll Animation Observer
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
 
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, observerOptions);
 
+// Observe all animated elements
+document.addEventListener('DOMContentLoaded', () => {
+  const animatedElements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in, .rotate-in, .stagger-item');
+  animatedElements.forEach(el => {
+    observer.observe(el);
+  });
+});
+
+// Trigger initial animations for elements already in view
+window.addEventListener('load', () => {
+  const animatedElements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in, .rotate-in, .stagger-item');
+  animatedElements.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    const isInView = rect.top < window.innerHeight && rect.bottom > 0;
+    if (isInView) {
+      el.classList.add('visible');
+    }
+  });
+});
 
 const phrases = [
   "Computer Science Student ",
- "Web Developer ",
-  "UI/UX Designer ",
+  "Web Developer ",
+  "UI/UX Developer ",
   "Software Developer "
 ];
 
