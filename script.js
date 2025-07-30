@@ -25,9 +25,10 @@ navLinks.forEach(link => {
 
 
 const phrases = [
-  "I'm a Computer Science Student ",
-  "UI/UX Developer ",
-  "Web Developer "
+  "Computer Science Student ",
+ "Web Developer ",
+  "UI/UX Designer ",
+  "Software Developer "
 ];
 
 const el = document.getElementById("typed-text");
